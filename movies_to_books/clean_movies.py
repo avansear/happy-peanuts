@@ -1,0 +1,26 @@
+def clean_movies(raw_json):
+    """
+    Desc: Takes raw JSON from fetch_movies.py and cleans the data by checking for movies that have at least 100 votes.
+    """
+    
+    cleaned = []
+
+    for movie in raw_json.get("results", []):
+        title = movie.get("title", "")
+        rdate = movie.get("release_date", "")
+        votes = movie.get("vote_vount", 0)
+        rating = movie.get("vote_average", 0.0)
+
+        if title != "":
+            if rdate != "":
+                if votes > 100:
+                    continue
+        
+        cleaned.append({
+            "title": title,
+            "release_year": rdate,
+            "rating": rating,
+            "votes": votes
+        })
+    
+    return cleaned

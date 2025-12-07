@@ -8,7 +8,7 @@ TMDB_KEY = os.getenv("TMDB_KEY")
 if not TMDB_KEY:
     raise SystemExit("TMDB_KEY not found")
 
-def movies(page):
+def fetch_movies(page):
     """
     Desc: Takes page number and returns a JSON which contains movies, filtered by popularity in descending order.
     """

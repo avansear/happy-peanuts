@@ -1,2 +1,4 @@
 #private keys
 .env
+.venv
+.DS_Store

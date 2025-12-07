@@ -5,12 +5,14 @@ def clean_movies(raw_json):
     
     cleaned = []
 
+    #loops thru each movie, and grabs info of each field
     for movie in raw_json.get("results", []):
         title = movie.get("title", "")
         rdate = movie.get("release_date", "")
         votes = movie.get("vote_count", 0)
         rating = movie.get("vote_average", 0.0)
 
+        #filter to skip empty titles, empty dates, or if review counts are less tha 100
         if not title:
             continue
         if not rdate:
@@ -21,6 +23,7 @@ def clean_movies(raw_json):
         year = int(rdate[:4])
         rating = round(rating,2)
 
+        #appending clean data to cleaned list
         cleaned.append({
             "title": title,
             "release_year": year,

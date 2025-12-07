@@ -13,6 +13,7 @@ def fetch_movies(page):
     Desc: Takes page number and returns a JSON which contains movies, filtered by popularity in descending order.
     """
 
+    #url that has api key, searches for movies by popularity in descending order
     url = f"https://api.themoviedb.org/3/discover/movie?api_key={TMDB_KEY}&sort_by=popularity.desc&page={page}"
     response = requests.get(url)
     data = response.json()

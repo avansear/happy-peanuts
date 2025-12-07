@@ -4,4 +4,5 @@ import json
 
 raw = fetch_movies(page=1)
 cleaned = clean_movies(raw)
+
 print(json.dumps(cleaned, indent=4))

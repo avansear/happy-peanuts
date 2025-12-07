@@ -16,7 +16,7 @@ def clean_games(raw_games):
             "game_name": title,
             "year": game_year,
             "rating": rating,
-            "popularity_rank": i + 1
+            "rank": i + 1
         })
     
     return output

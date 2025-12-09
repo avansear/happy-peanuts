@@ -16,7 +16,7 @@ def insert_games(cleaned_games):
         year INTEGER NOT NULL,
         rating REAL,
         votes INTEGER,
-        rank INTEGER CHECK(rank BETWEEN 1 and 10),
+        rank INTEGER CHECK(rank BETWEEN 1 and 5),
         UNIQUE(game_name, year)
     )""")
 

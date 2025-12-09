@@ -16,7 +16,7 @@ def insert_movies(cleaned_movies):
         year INTEGER NOT NULL,
         rating REAL,
         votes INTEGER,
-        rank INTEGER CHECK(rank BETWEEN 1 and 10),
+        rank INTEGER CHECK(rank BETWEEN 1 and 5),
         UNIQUE(movie_name, year)
     )""")
 

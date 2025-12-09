@@ -15,6 +15,7 @@ def insert_movies(cleaned_movies):
         movie_name TEXT NOT NULL,
         year INTEGER NOT NULL,
         rating REAL,
+        votes INTEGER,
         rank INTEGER CHECK(rank BETWEEN 1 and 10),
         UNIQUE(movie_name, year)
     )""")
@@ -22,8 +23,8 @@ def insert_movies(cleaned_movies):
     #inserting movies
     for movie in cleaned_movies:
         c.execute("""
-        INSERT OR IGNORE INTO movies (movie_name, year, rating, rank)
-        VALUES (:movie_name, :year, :rating, :rank)
+        INSERT OR IGNORE INTO movies (movie_name, year, rating, votes, rank)
+        VALUES (:movie_name, :year, :rating, :votes, :rank)
         """, movie)
     
     conn.commit()

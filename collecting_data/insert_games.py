@@ -15,6 +15,7 @@ def insert_games(cleaned_games):
         game_name TEXT NOT NULL,
         year INTEGER NOT NULL,
         rating REAL,
+        votes INTEGER,
         rank INTEGER CHECK(rank BETWEEN 1 and 10),
         UNIQUE(game_name, year)
     )""")
@@ -22,8 +23,8 @@ def insert_games(cleaned_games):
     #inserting games
     for game in cleaned_games:
         c.execute("""
-        INSERT OR IGNORE INTO games (game_name, year, rating, rank)
-        VALUES (:game_name, :year, :rating, :rank)
+        INSERT OR IGNORE INTO games (game_name, year, rating, votes, rank)
+        VALUES (:game_name, :year, :rating, :votes, :rank)
         """, game)
     
     conn.commit()

@@ -8,6 +8,7 @@ def clean_games(raw_games):
         title = game["name"]
         date = game["released"]
         rating = game["rating"]
+        votes = game["ratings_count"]
         
         # Extract year from date
         game_year = int(date[:4])
@@ -16,6 +17,7 @@ def clean_games(raw_games):
             "game_name": title,
             "year": game_year,
             "rating": rating,
+            "votes": votes,
             "rank": i + 1
         })
     

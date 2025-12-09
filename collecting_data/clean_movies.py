@@ -9,6 +9,7 @@ def clean_movies(raw_movies):
         title = movie["title"]
         date = movie["release_date"]
         rating = movie["vote_average"]
+        votes = movie["vote_count"]
 
         movie_year = int(date[:4])
 
@@ -16,6 +17,7 @@ def clean_movies(raw_movies):
             "movie_name": title,
             "year": movie_year,
             "rating": rating,
+            "votes": votes,
             "rank": i + 1
         })
     

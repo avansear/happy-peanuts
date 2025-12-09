@@ -15,6 +15,7 @@ def main():
     movies_rows_before = return_row_count("movies")
 
     print(f"Before:\nMovies: {movies_rows_before}\nVideo Games: {games_rows_before}")
+    print(f"\nAdding rows...")
 
     game_limit = 25
     movie_limit = 25
@@ -45,8 +46,6 @@ def main():
         if inserted_movies >= movie_limit and inserted_games >= game_limit:
             break
     
-    print("\nAdding rows...")
-
     if year == 2024 and inserted_movies == 0 and inserted_games == 0:
         print("\nCan't run more, limit year 2024 reached.\n")
     else:

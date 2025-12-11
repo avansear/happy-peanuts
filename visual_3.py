@@ -1,5 +1,6 @@
 import sqlite3
 import matplotlib.pyplot as plt
+import numpy as np
 
 #connecting db
 conn = sqlite3.connect("peanuts.db")
@@ -33,21 +34,11 @@ for row in games:
     game_ratings.append(rating)
     game_votes.append(votes)
 
-#getting max vote counts for movies and games so that y-axis can be relative to each industry.
-max_movie_votes = max(movie_votes)
-max_game_votes = max(game_votes)
-
-#converting all movie votes into relative % values.
-movie_votes_rel = []
-for v in movie_votes:
-    value = (v / max_movie_votes) * 100
-    movie_votes_rel.append(value)
-
-#converting all game votes into relative % values.
-game_votes_rel = []
-for v in game_votes:
-    value = (v / max_game_votes) * 100
-    game_votes_rel.append(value)
+# Scale votes to 0-100 range (relative to each industry's max)
+movie_votes_array = np.array(movie_votes)
+game_votes_array = np.array(game_votes)
+movie_votes_rel = np.interp(movie_votes_array, (0, movie_votes_array.max()), (0, 100))
+game_votes_rel = np.interp(game_votes_array, (0, game_votes_array.max()), (0, 100))
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 10))
 

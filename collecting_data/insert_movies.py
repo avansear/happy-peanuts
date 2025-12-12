@@ -17,14 +17,16 @@ def insert_movies(cleaned_movies):
         rating REAL,
         votes INTEGER,
         rank INTEGER CHECK(rank BETWEEN 1 and 5),
+        genre_id INTEGER,
+        FOREIGN KEY(genre_id) REFERENCES genres(genre_id),
         UNIQUE(movie_name, year)
     )""")
 
     #inserting movies
     for movie in cleaned_movies:
         c.execute("""
-        INSERT OR IGNORE INTO movies (movie_name, year, rating, votes, rank)
-        VALUES (:movie_name, :year, :rating, :votes, :rank)
+        INSERT OR IGNORE INTO movies (movie_name, year, rating, votes, rank, genre_id)
+        VALUES (:movie_name, :year, :rating, :votes, :rank, :genre_id)
         """, movie)
     
     conn.commit()

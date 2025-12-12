@@ -10,15 +10,18 @@ def clean_movies(raw_movies):
         date = movie["release_date"]
         rating = movie["vote_average"]
         votes = movie["vote_count"]
+        genres = movie["genre_ids"]
 
         movie_year = int(date[:4])
+        main_genre = genres[0]
 
         output.append({
             "movie_name": title,
             "year": movie_year,
             "rating": rating,
             "votes": votes,
-            "rank": i + 1
+            "rank": i + 1,
+            "genre_id": main_genre
         })
     
     return output

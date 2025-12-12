@@ -1,5 +1,6 @@
 from collecting_data.fetch_games import fetch_games_by_year
 from collecting_data.clean_games import clean_games
+from collecting_data.genre_ids import genre_ids
 from collecting_data.insert_games import insert_games
 from collecting_data.fetch_movies import fetch_movies_by_year
 from collecting_data.clean_movies import clean_movies
@@ -9,19 +10,23 @@ from collecting_data.year_row_count import year_row_count
 import json
 
 def main():
+    #printing count before adding rows.
     print("Fetching top videogames and movies from 2000 to 2024.\n")
-
     games_rows_before = return_row_count("games")
     movies_rows_before = return_row_count("movies")
-
     print(f"Before:\nMovies: {movies_rows_before}\nVideo Games: {games_rows_before}")
     print(f"\nAdding rows...")
 
+    #setting default values
     game_limit = 25
     movie_limit = 25
     inserted_games = 0
     inserted_movies = 0
 
+    #grabbing list of genre id's and names from tmdb.
+    genre_ids()
+
+    #limiting adding rows to 25 per table; the tables take 5 rows per year, so we count how many we have for a year and add the remaining.
     for year in range(2000, 2025):
         if inserted_movies < movie_limit:
             current = year_row_count("movies", year)
@@ -53,7 +58,6 @@ def main():
         current_movie_rows = return_row_count("movies")
         print("\nAdding limit reached (25). Run again to continue.\n")
         print(f"After:\nMovies: {current_movie_rows}\nVideo Games: {current_game_rows}")
-
 
 if __name__ == "__main__":
     main()
